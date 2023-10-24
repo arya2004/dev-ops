@@ -1,0 +1,30 @@
+sudo docker run hello-world  : creates a container
+docker images : available image
+docker ps : running container
+docker ps -a : all containers
+docker run --name webapp -d -p 9080:80 nginx  (-d in background)
+docker inspect <container_name> : gives details about it
+docker stop <container_name>
+docker rm <container_name>
+docker rmi <image.
+
+
+docker compose (reads a file)
+
+docker compos up -d
+docker compose down (stop all containers)
+docker system prune -a
+______________________
+
+    1  git clone https://github.com/devopshydclub/emartapp.git       c noqueue master br-2828d200a570 state UP group default
+    2  cd emartapp/
+    3  ls
+    4  cat docker-compose.yaml
+    5  docker ps                                                     c noqueue master br-2828d200a570 state UP group default
+    6  docker ps -a
+    7  docker compose up -d
+    8  docker compose ps
+    9  ip addr show                                                  c noqueue master br-2828d200a570 state UP group default
+   10  history
+
+   ______________________
