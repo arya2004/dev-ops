@@ -1,0 +1,13 @@
+/bin -> all user exe cmds
+/sbin -> all sudo cmds
+
+vim
+i - insert
+esc key- escape
+:w - write
+:q - exitt vimmm
+:q! - force exitt vimmm
+
+ip addr show : shows ip address
+
+_________

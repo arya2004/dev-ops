@@ -1,0 +1,48 @@
+// vagrant
+
+automation, provisioning (onInit)
+
+cmds:
+vagrant init boxname (get from vag cloud)
+vagrant up : create  VM/ run if exist
+vagrant ssh: Login
+vagrant halt
+vagrant destroy : delete
+
+up: download file from vagrant cloud then runs on Vbox ( default Hypervisor)
+
+vagrant box list
+vagrant status
+vagrant global-status
+vagrant reload (checks for changes in file and start)
+vagrant reload --provision (re provision all cmds)
+
+exit : to exit VM
+logout : same
+
+##_________
+
+Containers: Pid 1 is the Process of image (MongoDb image)
+normally, it is System proc
+We can archieve the container, called Image and ship it
+
+_________CentOS static host
+
+
+/var/www/html (put code here)
+systemctl restart httpd
+systemctl start httpd
+systemctl enable httpd
+
+systemctl status httpd
+
+download website in /tmp/
+unzip
+cp -r * /var/www/html
+
+_________ (q to quit)
+systemctl status firewalld
+systemctl stop firewalld
+
+_________LAMP Deploy
+https://ubuntu.com/tutorials/install-and-configure-wordpress#2-install-dependencies
