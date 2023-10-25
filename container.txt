@@ -1,13 +1,18 @@
-sudo docker run hello-world  : creates a container
+# PiD 1 is always image proc
+COntainer run from images. First need to remove container
+
+sudo docker run hello-world  : creates a container from image (helo world)
 docker images : available image
 docker ps : running container
 docker ps -a : all containers
 docker run --name webapp -d -p 9080:80 nginx  (-d in background)
 docker inspect <container_name> : gives details about it
-docker stop <container_name>
+docker stop <container_name/id>
+docker start <container_name/id>
 docker rm <container_name>
 docker rmi <image.
-
+docker exec  : execute cmds on containers
+docker pull  : only gets the image, doesnt run
 
 docker compose (reads a file)
 
@@ -28,3 +33,22 @@ ______________________
    10  history
 
    ______________________
+
+DOcker image: archieved Cotainer, readonly, 
+Repository = Registry
+
+docker images -> list all locally
+
+______________________
+-d  : detached in background
+--name <name>  : give container a name
+-p 8080:80  : ovntainer run prinvate network. Map 8080 to private 80 prot. Prot mapping/ forwarding
+
+______________________
+
+docker exec  : execute cmds on containers
+docker exec <container_name> cmd
+docker exec myweb ls /
+
+docker exec -it myweb /bin/bash  : interactive attach to bash. Gets inside container, like ssh
+docker exec -it myweb /bin/sh 
