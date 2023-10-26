@@ -52,3 +52,58 @@ docker exec myweb ls /
 
 docker exec -it myweb /bin/bash  : interactive attach to bash. Gets inside container, like ssh
 docker exec -it myweb /bin/sh 
+
+______________________ DOCKER LOGS
+docker inspect <image>
+docker inspect <container>
+first runs entry point, then from {cmd}  
+docker run -d -P nginx  : runs in background, auto port mapping 
+if done without -d, runs in foreground, takes terminal
+
+Variable export, docker run -d -P -e MYSQL_ROOT_PASSWORD=admin123 mysql
+
+COntainers are volatile, need stateful ones -> COntainer VOlumes
+
+docker run --name db -d -e MYSQL_ROOT_PASSWORD=admin123 -p 3030:3306 -v /root/vdata:/var/lib/mysql mysql
+-v maps a directory to registry of container. Bind mount
+ 
+ Binds: where it storing data
+ ______________________Docker VOlume
+ docker volume create mydb
+  docker volume ls
+
+  docker run --name db -d -e MYSQL_ROOT_PASSWORD=admin123 -p 3030:3306 -v mydb:/var/lib/mysql mysql
+
+______________________DockerFile
+From  : base image
+Lables : Add key value to image
+Run : exe a command
+Add/COpy : add files and folder to image
+CMd  : Runs binaries/commands on docker run
+ENtrpount: allows youu to configure a conainer that will run as exe
+Volume: create a mount point and mounts to external volume
+Expose : port the process is binding to 
+ENv : env vvar
+Workdir " landing point after attach or exec
+User : sets UiD
+Arg : var assed at build time
+ONbuild : when current is used as base img
+
+EntryPoint: Usse need to pass args, if not there.
+if Entrypoint {echo}, then CMD {hello}, then prints {hello} else prints passed args 
+
+
+RUN - command triggers while we build the docker image.
+
+CMD - command triggers while we launch the created docker image.
+
+https://bootstrapmade.com/content/templatefiles/Arsha/Arsha.zip
+
+______________________Docker Conpose
+
+services = container
+build : .    {expects docker file in same dir}
+docker-compose up --detached
+docker-compose dowm : removes and stops container
+docker-compose ps
+docker-compose top
