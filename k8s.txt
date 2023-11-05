@@ -1,0 +1,92 @@
+CLustering:
+multiple docker nodes, need master node. Containers separated on other
+
+COntainer Orchestration:
+All docker node are single pool of resource. Master Node disptribute those containers
+
+Pods = container
+
+Pods run the container(s).
+Access by Pod IP and port of container.
+At a time run one main container (with helper) in a single pod.
+
+
+MasterNOde : API sercer, scheduler, control manage, ETCD
+API server: 
+    Kube API: handles all communication and sends to other. Use Kubectl to connect
+    ETCD server: key value, all runtime info, need backuped. stores current state
+scheduler: 
+    schedule container on right node. based on resource req/ policy. 
+control manage: 
+    Node controller: monitors nodes.
+    Replication Controller: monitors pods. Autohealing when one goes down
+    Endpoint COntroller: joins Services and POds.
+    Service Acc and Token COntroler: Authenticaton and authorizaton
+etcd: 
+
+Worker nOde: Kublet, Proxy, container runtime env
+Kublet: 
+    Agent. Listnes to master node. ferch image, run container (docker run -v -p)
+Proxy:
+    Porxy running on all. rules allow communication to pods
+container runtime env: 
+    Docker
+
+_________________________Kubeconfig
+cat ${HOME}/.kube/config
+contains clusters, users, namespaces, auth mechanism
+server: url of master node's api location
+context: user, cluster pair
+kubectl config view : view contexr
+
+
+______________________Pod
+Pod provide all resouce to COntainer. since k8s can use many CREs, it cant use containers directly. Pods give adbstaction
+Pod is process running on your cluster
+HOw pods interact accorss nodes? Overlay network 
+every node has subnet with Bridge. Bridge forwards IP to Router. ROuter to switch to router to local bridge
+
+1 container per pod OR helper multi-container pods. containers Shares same resource given by pod 
+## Multiple PODS should be HORIZONTALLY SCALED, 
+
+kubectl create -f pod-setup.yaml
+kubectl apply -f  pod-setup.yaml : update
+kubectl get pod
+kubectl describe pod <pod_name>  : detailed desc
+kubectl get pod <podname> -o yaml  : desc in yaml format
+kubectl edit pod <pod_name>
+kubectl delete pod vproapp
+_________________________NameSpaces
+kube-system, kubepublic
+create different for prod/dev
+kubectl get ns : gets namespaces
+kubectl get all : all obj in default namespace
+kubectl get all --all-namespaces  : all rec from all namepacws
+kubectl create ns <name>
+kubectl run nginx1 --image=nginx -n kubekart  : runs pod named nginx1 with nginx container in kubekart
+kubectl delete ns <naee>  : deletes every pod in it
+
+
+_________________________Service
+static endpoint like load balancer
+expose pod as network service
+why not port mapping? pods dont have static endpoint but pods are disposable
+    Nodeport:  portmapping, non-prod
+                Uses lable and backend port to forward request
+                access nodePort then forwarded to app selectio:targetPort
+    CLusterIP: to expose it internally, like tomcat to mysql
+    Loadbalancer: aktual fking load balancer
+
+_________________________Replica Set
+_________________________Deployment
+_________________________COnfig Map
+_________________________Secret
+_________________________Volumes
+
+
+______________________MiniKube and Kubectl
+minicube start : starts 1  node
+minicube status
+kubectl get nodes  : gets curent nodes
+cat .kube/config (in home dir)
+minikube dashboard : GUI

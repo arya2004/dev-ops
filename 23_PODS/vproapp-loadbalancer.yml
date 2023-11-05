@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: hello-service
+spec:
+  ports:
+    - port: 80
+      targetPort: vrpoapp-port
+      protocol: TCP
+  selector:
+    app: vproap
+  type: LoadBalancer
+
+#nodeport created automatically
+#target port is name of port or port no

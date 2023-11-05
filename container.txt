@@ -107,3 +107,8 @@ docker-compose up --detached
 docker-compose dowm : removes and stops container
 docker-compose ps
 docker-compose top
+docker compose build  (to create image from commpose)
+docker system prune -a  (remove stopped)
+______________________Push
+docker login
+docker push <image>
