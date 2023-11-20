@@ -40,6 +40,9 @@ context: user, cluster pair
 kubectl config view : view contexr
 
 
+______________________StorageClass
+ kubectl get storageclass
+
 ______________________Pod
 Pod provide all resouce to COntainer. since k8s can use many CREs, it cant use containers directly. Pods give adbstaction
 Pod is process running on your cluster
@@ -56,6 +59,8 @@ kubectl describe pod <pod_name>  : detailed desc
 kubectl get pod <podname> -o yaml  : desc in yaml format
 kubectl edit pod <pod_name>
 kubectl delete pod vproapp
+
+
 _________________________NameSpaces
 kube-system, kubepublic
 create different for prod/dev
@@ -68,6 +73,9 @@ kubectl delete ns <naee>  : deletes every pod in it
 
 
 _________________________Service
+kubectl get svc 
+
+
 static endpoint like load balancer
 expose pod as network service
 why not port mapping? pods dont have static endpoint but pods are disposable
@@ -77,11 +85,47 @@ why not port mapping? pods dont have static endpoint but pods are disposable
     CLusterIP: to expose it internally, like tomcat to mysql
     Loadbalancer: aktual fking load balancer
 
+communication happens via service btwn ussr, pod and db pod
+nodeport:port request sends to service (frontend port), servic to container
+
+lable selector should match pod,
+backend port and pod port should be same
+
+targetPort = backend port
+port = frntend port
 _________________________Replica Set
+
+if pod down, need to manually recreate pod.
+this creates this automatically
+more replica => scheduler distributes  pods evenly. (in case of node down)
+
+kubectl get rs
+kubectl get pods
+kubectl delete rs <replicasert_name>
+
+
+experient: delete pod, it quickly recreaates it
+
+
 _________________________Deployment
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
+upgrade, rollback, 
+Creates replica set tot manage no of pods
+ex: need to update v1 to v2
+
+kubectl get deploy
+kubectl delete deploy nginx-deployment
+
 _________________________COnfig Map
+inject env
 _________________________Secret
-_________________________Volumes
+config map but encoded
+_________________________INgress
+
+load balanceer
+client => ingress -> routing rule -> clusterIP service -> Pod
+nginx INgress Controller most coommon
 
 
 ______________________MiniKube and Kubectl

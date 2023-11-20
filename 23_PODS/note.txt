@@ -1,0 +1,4 @@
+kubectl create -f vproapp.yaml
+kubectl create -f vproapp-loadbalancer.yaml
+kubectl delete pod 
+kubectl delete svc hello-srvice

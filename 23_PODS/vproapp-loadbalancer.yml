@@ -8,7 +8,7 @@ spec:
       targetPort: vrpoapp-port
       protocol: TCP
   selector:
-    app: vproap
+    app: vproapp
   type: LoadBalancer
 
 #nodeport created automatically
